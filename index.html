@@ -313,6 +313,15 @@
     color: var(--accent-ink); background: var(--accent-soft); white-space: nowrap;
   }
 
+  /* ── Figure (sheet screenshots) ──────────────────────────── */
+  .figure { margin: 4px 0 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+  .figure .frame { overflow-x: auto; background: #fff; }
+  .figure img { display: block; min-width: 660px; width: 100%; height: auto; }
+  .figure figcaption { padding: 11px 16px; font-size: 13.5px; line-height: 1.6; color: var(--muted); border-top: 1px solid var(--line); background: var(--surface-2); }
+  .figure figcaption b { color: var(--ink); }
+  /* 번호 배지 — 스크린샷의 빨간 표시와 동일 */
+  .mk { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #e11d48; color: #fff; font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+
   /* ── Callout ─────────────────────────────────────────────── */
   .note {
     display: flex; gap: 13px; align-items: flex-start;
@@ -381,10 +390,11 @@
 
 <nav class="stepnav" aria-label="단계 이동">
   <a href="#prep"><b class="tnum">01</b> 준비물</a>
-  <a href="#install"><b class="tnum">02</b> 다운로드·설치</a>
-  <a href="#add"><b class="tnum">03</b> 아바타 추가</a>
-  <a href="#run"><b class="tnum">04</b> 실행</a>
-  <a href="#stop"><b class="tnum">05</b> 종료</a>
+  <a href="#sheet"><b class="tnum">02</b> 시트 설정</a>
+  <a href="#install"><b class="tnum">03</b> 다운로드·설치</a>
+  <a href="#add"><b class="tnum">04</b> 아바타 추가</a>
+  <a href="#run"><b class="tnum">05</b> 실행</a>
+  <a href="#stop"><b class="tnum">06</b> 종료</a>
 </nav>
 
 <main>
@@ -468,10 +478,56 @@
     </div>
   </section>
 
-  <!-- 02 · 설치 -->
+  <!-- 02 · 시트 설정 -->
+  <section id="sheet" class="container">
+    <div class="sec-head">
+      <span class="sec-kicker"><span class="n">02</span> 시트 설정</span>
+      <h2>사본을 만든 뒤, 딱 두 곳만 채웁니다</h2>
+      <p>준비물 1‑1에서 만든 <b>내 시트 사본</b>을 열어 <b>ITEM 시트</b>(전체 자금·거래 개수)와
+        <b>종목 탭</b>(종목별 설정)을 채웁니다. 노란 칸이 입력 칸이지만, <b>실제로 손대야 할 곳은 아래 번호로 표시한 칸뿐</b>입니다 —
+        회차표·수익률·금액 등 나머지는 전부 자동 계산됩니다.</p>
+    </div>
+
+    <div class="subhead"><span class="tag">ITEM</span> 시트 — 전체 설정</div>
+    <figure class="figure">
+      <div class="frame"><img src="assets/sheet-item.png" alt="ITEM 시트에서 작업개수(①)와 투입원금(②) 입력 위치"></div>
+      <figcaption>빨간 표시가 입력 칸입니다 — <b>① 작업개수</b>, <b>② 투입원금</b>. 나머지 노란 칸은 자동·참고값이라 그대로 둡니다.</figcaption>
+    </figure>
+    <div class="tablewrap" style="margin-top:14px">
+      <table>
+        <thead><tr><th>표시</th><th>칸</th><th>무엇인가</th><th>넣을 값</th></tr></thead>
+        <tbody>
+          <tr><td><span class="mk">1</span></td><td><b>작업개수</b></td><td>작업표에서 <b>위에서부터 이 개수만큼만</b> 거래합니다</td><td>운용할 종목 수 (예: <code>2</code> → 위 2개 종목만)</td></tr>
+          <tr><td><span class="mk">2</span></td><td><b>투입원금</b></td><td>이 계좌에 <b>실제로 투입한 원금</b></td><td>투입 금액 (예: <code>$20,000</code>)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><span class="ic">💡</span><div><b>나머지는 건드리지 마세요.</b> 계좌번호·배정금액·수익률 등은 자동이고, <b>종목 티커는 종목 탭에서 자동으로 가져옵니다</b>. ‘작동/멈춤’ 칸은 아바타 실행 상태 표시일 뿐입니다.</div></div>
+
+    <div class="subhead" style="margin-top:40px"><span class="tag">종목 탭</span> Dragon · Tiger · Lamb — 종목별 설정</div>
+    <p style="margin:0 0 14px; color:var(--ink-soft); font-size:16px">운용할 종목 수만큼 탭을 씁니다(예: 2종목이면 Dragon·Tiger). 각 탭에서 <b>아래 4칸만</b> 설정합니다.</p>
+    <figure class="figure">
+      <div class="frame"><img src="assets/sheet-symbol.png" alt="종목 탭에서 Symbol(①), 시작날짜(②), Tier 분할(③), 첫매수가(④) 입력 위치"></div>
+      <figcaption>종목 탭 맨 위 노란 칸 — <b>① Symbol</b>, <b>② 시작날짜</b>, <b>③ Tier 분할</b>, <b>④ 첫매수가</b>.</figcaption>
+    </figure>
+    <div class="tablewrap" style="margin-top:14px">
+      <table>
+        <thead><tr><th>표시</th><th>칸</th><th>무엇인가</th><th>넣을 값</th></tr></thead>
+        <tbody>
+          <tr><td><span class="mk">1</span></td><td><b>Symbol</b></td><td>이 탭에서 거래할 <b>종목 티커</b></td><td>원하는 종목 (예: <code>SOXL</code>)</td></tr>
+          <tr><td><span class="mk">2</span></td><td><b>Start Date</b> <span style="color:var(--muted)">시작날짜</span></td><td>매매 <b>시작일</b> — 히스토리 기록에 사용</td><td><b>반드시 입력</b> (예: <code>2025-01-01</code>)</td></tr>
+          <tr><td><span class="mk">3</span></td><td><b>Tier 분할</b></td><td>분할 회차 수</td><td>수정 가능하나 <b>40 권장(그대로 두기)</b></td></tr>
+          <tr><td><span class="mk">4</span></td><td><b>첫매수가</b></td><td>첫 매수 기준 가격</td><td><b>현재 주가</b>를 입력</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><span class="ic">⚠️</span><div><b>회차표(5행 아래의 사다리)는 사용하지 않습니다</b> — 자동 표시용이니 건드리지 마세요. 종목을 바꾸려면 그 탭의 <b>Symbol</b>만 바꾸면 ITEM에 자동 반영됩니다.</div></div>
+  </section>
+
+  <!-- 03 · 설치 -->
   <section id="install" class="container">
     <div class="sec-head">
-      <span class="sec-kicker"><span class="n">02</span> 다운로드 &amp; 설치</span>
+      <span class="sec-kicker"><span class="n">03</span> 다운로드 &amp; 설치</span>
       <h2>받아서 실행하면 트레이에 상주합니다</h2>
       <p>아바타는 설치가 필요 없는 <b>단일 실행 파일</b>(포터블 exe)입니다. 창이 없는 트레이 앱이라, 모든 조작은 트레이 아이콘 <b>우클릭 메뉴</b>에서 합니다.</p>
     </div>
@@ -484,10 +540,10 @@
     </ol>
   </section>
 
-  <!-- 03 · 아바타 추가 -->
+  <!-- 04 · 아바타 추가 -->
   <section id="add" class="container">
     <div class="sec-head">
-      <span class="sec-kicker"><span class="n">03</span> 아바타 추가 · 설정 마법사</span>
+      <span class="sec-kicker"><span class="n">04</span> 아바타 추가 · 설정 마법사</span>
       <h2>준비한 값을 넣어 계좌를 등록</h2>
       <p>트레이 <b>우클릭 → “아바타 추가…”</b> 를 누르면 내 컴퓨터 안에서만 열리는 설정 페이지가 뜹니다. 아래 값을 입력하세요 —
         키·토큰은 붙여넣기 확인을 위해 <b>평문으로 표시</b>됩니다.</p>
@@ -513,10 +569,10 @@
     <div class="note"><span class="ic">💡</span><div>여러 계좌를 운용하려면 <b>“아바타 추가…”</b> 를 반복해 계좌별로 등록하면 됩니다.</div></div>
   </section>
 
-  <!-- 04 · 실행 -->
+  <!-- 05 · 실행 -->
   <section id="run" class="container">
     <div class="sec-head">
-      <span class="sec-kicker"><span class="n">04</span> 아바타 실행</span>
+      <span class="sec-kicker"><span class="n">05</span> 아바타 실행</span>
       <h2>계좌를 클릭하면 매매가 시작됩니다</h2>
     </div>
     <ol class="steps two">
@@ -528,10 +584,10 @@
     <div class="note"><span class="ic">📈</span><div>실행 상태·체결 이벤트는 <b>텔레그램</b>으로 통지되고 <b>구글 시트</b>에도 기록됩니다. 프로그램 창을 계속 열어둘 필요가 없습니다.</div></div>
   </section>
 
-  <!-- 05 · 종료 -->
+  <!-- 06 · 종료 -->
   <section id="stop" class="container">
     <div class="sec-head">
-      <span class="sec-kicker"><span class="n">05</span> 아바타 종료</span>
+      <span class="sec-kicker"><span class="n">06</span> 아바타 종료</span>
       <h2>계좌 중지 → 앱 종료, 두 단계</h2>
       <p>앱은 <b>실행 중인 계좌가 하나라도 있으면 종료되지 않도록</b> 막혀 있습니다 — 주문을 남긴 채 꺼지는 것을 방지합니다.</p>
     </div>
