@@ -589,6 +589,42 @@
       <li><b>장중</b>이면 시트 설정대로 매매, <b>장 마감</b>이면 접속만 하고 정산 후 대기합니다.</li>
     </ol>
     <div class="note"><span class="ic">📈</span><div>실행 상태·체결 이벤트는 <b>텔레그램</b>으로 통지되고 <b>구글 시트</b>에도 기록됩니다. 프로그램 창을 계속 열어둘 필요가 없습니다.</div></div>
+
+    <div class="subhead" style="margin-top:40px"><span class="tag">확인</span> 텔레그램으로 실행 확인</div>
+    <p style="margin:0 0 8px; color:var(--ink-soft); font-size:16px">아바타가 잘 돌고 있는지 <b>텔레그램 명령어</b>로 바로 확인할 수 있습니다. 준비물 1‑4에서 등록한 <b>내 대화(chat_id)</b>에서 명령을 보내면 봇이 답합니다 — 먼저 <code>/status</code> 를 보내보세요.</p>
+    <div class="quote"><strong><code>/status</code> 응답 예시</strong>▶️ 실행 중 · 모드: ⚠️ 실전 · 마지막 사이클: 22:31:04 · 최근 결과: 정상</div>
+
+    <div style="font-weight:800; margin:24px 0 10px; font-size:15px; color:var(--accent)">조회 · 확인 명령</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+        <tbody>
+          <tr><td><code>/status</code></td><td>실행/일시정지 상태 · 모드 · 마지막 사이클 시각 — <b>실행 확인의 핵심</b></td></tr>
+          <tr><td><code>/help</code></td><td>전체 명령 목록 보기</td></tr>
+          <tr><td><code>/balance</code></td><td>보유 잔고 (종목 · 수량 · 평단)</td></tr>
+          <tr><td><code>/deposit</code></td><td>주문가능금액(예수금)</td></tr>
+          <tr><td><code>/unfilled</code> [심볼]</td><td>미체결 주문 목록 (심볼 생략 시 전체)</td></tr>
+          <tr><td><code>/orders</code> [n]</td><td>최근 주문 원장 n건 (기본 10)</td></tr>
+          <tr><td><code>/quote</code> &lt;심볼&gt;</td><td>현재가 조회</td></tr>
+          <tr><td><code>/log</code> [n]</td><td>최근 로그 n줄 (기본 30)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="font-weight:800; margin:24px 0 10px; font-size:15px; color:var(--gold)">제어 · 주문 명령 <span style="font-weight:600; color:var(--muted); font-size:13px">— 실행 전 확인 버튼이 뜹니다</span></div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+        <tbody>
+          <tr><td><code>/pause</code> · <code>/resume</code></td><td>매매 일시정지 / 재개</td></tr>
+          <tr><td><code>/buy</code> · <code>/sell</code> &lt;심볼&gt; &lt;수량&gt; &lt;가격&gt; [유형]</td><td>수동 매수 / 매도 <b>(확인 필요)</b></td></tr>
+          <tr><td><code>/cancel</code> &lt;주문번호&gt; &lt;심볼&gt;</td><td>특정 주문 취소 <b>(확인 필요)</b></td></tr>
+          <tr><td><code>/cancelall</code> &lt;심볼&gt; &lt;매수|매도&gt;</td><td>한 종목의 방향 전체 취소 <b>(확인 필요)</b></td></tr>
+          <tr><td><code>/wrapup</code></td><td>랩업(당일 정산) 재실행 <b>(확인 필요)</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><span class="ic">🔒</span><div>명령은 준비물 1‑4에서 등록한 <b>chat_id(내 대화)에서만</b> 동작합니다(화이트리스트). <code>/buy</code>·<code>/cancel</code>·<code>/wrapup</code> 같은 실행 계열은 누르면 <b>확인 버튼</b>이 한 번 더 떠서 실수를 막아줍니다.</div></div>
   </section>
 
   <!-- 06 · 종료 -->
