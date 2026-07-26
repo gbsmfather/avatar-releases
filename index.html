@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="아바타 자동매매 프로그램 설치·설정 사용자 가이드 — 다운로드부터 준비물, 아바타 추가, 실행, 종료까지 안내합니다.">
+<title>아바타 사용자 가이드</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --sans: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo",
+            "Malgun Gothic", "Segoe UI", system-ui, sans-serif;
+    --mono: "SFMono-Regular", "Cascadia Code", "Consolas", ui-monospace, monospace;
+
+    /* light (default) — cool slate neutrals biased toward the indigo brand */
+    --ground: #f5f7fb;
+    --surface: #ffffff;
+    --surface-2: #f0f3f9;
+    --ink: #101728;
+    --ink-soft: #33405a;
+    --muted: #5b6577;
+    --line: #e2e7f1;
+    --line-strong: #cfd6e5;
+    --accent: #4338ca;
+    --accent-ink: #3730a3;
+    --accent-soft: #eef0fe;
+    --gold: #a45c07;
+    --gold-bright: #c2770c;
+    --gold-soft: #fbf1e0;
+    --good: #2f7d54;
+    --good-soft: #e6f4ec;
+    --shadow: 0 10px 30px rgb(16 23 40 / 8%);
+    --shadow-lg: 0 22px 50px rgb(16 23 40 / 12%);
+  }
+  :root[data-theme="light"] { color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #090e1a;
+      --surface: #111a2e;
+      --surface-2: #0d1526;
+      --ink: #e8ecf6;
+      --ink-soft: #c2cbdc;
+      --muted: #93a0b8;
+      --line: #1e2942;
+      --line-strong: #2a3653;
+      --accent: #8ea2ff;
+      --accent-ink: #aab7ff;
+      --accent-soft: #17213e;
+      --gold: #e6ad55;
+      --gold-bright: #f0bd6a;
+      --gold-soft: #231a0d;
+      --good: #6dd39b;
+      --good-soft: #10261a;
+      --shadow: 0 10px 30px rgb(0 0 0 / 35%);
+      --shadow-lg: 0 22px 50px rgb(0 0 0 / 45%);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #090e1a;
+    --surface: #111a2e;
+    --surface-2: #0d1526;
+    --ink: #e8ecf6;
+    --ink-soft: #c2cbdc;
+    --muted: #93a0b8;
+    --line: #1e2942;
+    --line-strong: #2a3653;
+    --accent: #8ea2ff;
+    --accent-ink: #aab7ff;
+    --accent-soft: #17213e;
+    --gold: #e6ad55;
+    --gold-bright: #f0bd6a;
+    --gold-soft: #231a0d;
+    --good: #6dd39b;
+    --good-soft: #10261a;
+    --shadow: 0 10px 30px rgb(0 0 0 / 35%);
+    --shadow-lg: 0 22px 50px rgb(0 0 0 / 45%);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--ground);
+    font-size: 17px;
+    line-height: 1.82;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  /* ── Hero (committed dark identity band) ─────────────────── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 140% at 82% -10%, rgb(99 102 241 / 28%) 0%, transparent 55%),
+      radial-gradient(90% 120% at 0% 110%, rgb(180 120 30 / 16%) 0%, transparent 50%),
+      linear-gradient(150deg, #0b1120 0%, #131d36 55%, #1a2748 100%);
+    color: #f3f6ff;
+    border-bottom: 1px solid rgb(255 255 255 / 8%);
+  }
+  .hero::after {   /* faint tick-grid motif */
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgb(255 255 255 / 3.5%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 3.5%) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: radial-gradient(80% 80% at 70% 20%, #000 0%, transparent 75%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 72px 24px 76px;
+  }
+  .eyebrow {
+    font-size: 12px; font-weight: 800;
+    letter-spacing: .2em; text-transform: uppercase;
+    margin: 0 0 18px;
+  }
+  .eyebrow.gold { color: var(--gold-bright); }
+  .hero h1 {
+    font-size: clamp(46px, 8vw, 76px);
+    font-weight: 800; letter-spacing: -.035em; line-height: .98;
+  }
+  .hero h1 .mark { color: #cdd6ff; }
+  .lede {
+    max-width: 46ch;
+    margin: 22px 0 0;
+    font-size: clamp(17px, 2.3vw, 21px);
+    line-height: 1.7;
+    color: #c3cde4;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 13px 22px; border-radius: 12px;
+    font-weight: 700; font-size: 15px;
+    text-decoration: none; border: 1px solid transparent;
+    transition: transform .14s ease, background .14s ease, border-color .14s ease;
+  }
+  .btn span { transition: transform .14s ease; }
+  .btn-primary {
+    background: linear-gradient(180deg, #6366f1, #4f46e5);
+    color: #fff; box-shadow: 0 8px 22px rgb(79 70 229 / 42%);
+  }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-primary:hover span { transform: translateX(3px); }
+  .btn-ghost { color: #dbe3f7; border-color: rgb(255 255 255 / 22%); }
+  .btn-ghost:hover { background: rgb(255 255 255 / 8%); }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 26px; }
+  .chip {
+    font-size: 12.5px; font-weight: 800; letter-spacing: .04em;
+    padding: 6px 12px; border-radius: 999px;
+    color: #0b1120; background: var(--gold-bright);
+  }
+  .chip-muted {
+    font-size: 12.5px; font-weight: 600;
+    padding: 6px 12px; border-radius: 999px;
+    color: #b9c4dd; border: 1px solid rgb(255 255 255 / 16%);
+  }
+  .theme-toggle {
+    position: absolute; top: 22px; right: 24px;
+    width: 40px; height: 40px; border-radius: 11px;
+    border: 1px solid rgb(255 255 255 / 20%);
+    background: rgb(255 255 255 / 8%); color: #eaf0ff;
+    font-size: 17px; cursor: pointer; line-height: 1;
+    display: grid; place-items: center;
+  }
+  .theme-toggle:hover { background: rgb(255 255 255 / 16%); }
+
+  /* ── Sticky step nav ─────────────────────────────────────── */
+  .stepnav {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; gap: 4px; overflow-x: auto;
+    padding: 10px max(24px, calc((100% - 1080px) / 2 + 24px));
+    background: color-mix(in srgb, var(--ground) 82%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    scrollbar-width: none;
+  }
+  .stepnav::-webkit-scrollbar { display: none; }
+  .stepnav a {
+    display: inline-flex; align-items: baseline; gap: 8px;
+    white-space: nowrap;
+    padding: 10px 15px; border-radius: 9px;
+    font-size: 15px; font-weight: 600; color: var(--muted);
+    text-decoration: none;
+    transition: color .14s ease, background .14s ease;
+  }
+  .stepnav a b { font-weight: 800; font-size: 12px; color: var(--gold); letter-spacing: .05em; }
+  .stepnav a:hover { color: var(--ink); background: var(--surface-2); }
+  .stepnav a.active { color: var(--accent); background: var(--accent-soft); }
+  .stepnav a.active b { color: var(--accent); }
+
+  /* ── Layout ──────────────────────────────────────────────── */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 66px 0 8px; scroll-margin-top: 64px; }
+  section + section { border-top: 1px solid var(--line); }
+  .sec-head { margin-bottom: 34px; }
+  .sec-kicker {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 12px;
+  }
+  .sec-kicker .n {
+    font-family: var(--mono); font-size: 12px;
+    color: var(--gold); font-variant-numeric: tabular-nums;
+  }
+  .sec-head h2 { font-size: clamp(25px, 3.6vw, 34px); font-weight: 800; letter-spacing: -.02em; }
+  .sec-head p { max-width: 66ch; margin: 14px 0 0; color: var(--ink-soft); font-size: 17.5px; }
+
+  /* ── Prep cards (centerpiece) ────────────────────────────── */
+  .prep-grid {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+  }
+  .card {
+    display: flex; flex-direction: column;
+    padding: 22px 22px 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--line-strong); }
+  .card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .card-num {
+    flex: none;
+    width: 40px; height: 40px; border-radius: 11px;
+    display: grid; place-items: center;
+    font-family: var(--mono); font-weight: 700; font-size: 15px;
+    color: var(--gold-bright); background: var(--gold-soft);
+    border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+    font-variant-numeric: tabular-nums;
+  }
+  .card-src {
+    font-size: 11.5px; font-weight: 700; letter-spacing: .04em;
+    color: var(--muted); text-transform: uppercase;
+  }
+  .card h3 { font-size: 19.5px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 9px; }
+  .card p { margin: 0; font-size: 15.5px; color: var(--ink-soft); line-height: 1.7; }
+  .card ul { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+  .card li { position: relative; padding-left: 18px; font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
+  .card li::before {
+    content: ""; position: absolute; left: 2px; top: 9px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .card li.warn { color: var(--gold); font-weight: 600; }
+  .card li.warn::before { background: var(--gold-bright); }
+  .feeds {
+    margin-top: 16px; padding-top: 14px;
+    border-top: 1px dashed var(--line-strong);
+    font-size: 14px; color: var(--muted);
+  }
+  .feeds b { color: var(--accent-ink); font-weight: 700; }
+
+  code, .u {
+    font-family: var(--mono); font-size: .88em;
+    background: var(--surface-2); color: var(--accent-ink);
+    padding: 2px 6px; border-radius: 6px;
+    word-break: break-all;
+  }
+  .urlbox {
+    margin: 14px 0 0; padding: 12px 14px;
+    background: var(--surface-2); border: 1px solid var(--line);
+    border-radius: 10px;
+    font-family: var(--mono); font-size: 12.5px; color: var(--ink-soft);
+    overflow-x: auto; white-space: nowrap;
+  }
+
+  /* ── Numbered step list ──────────────────────────────────── */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; counter-reset: s; }
+  .steps.two { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items: start; }
+  .steps > li {
+    counter-increment: s;
+    position: relative; padding-left: 46px;
+    font-size: 16.5px; color: var(--ink-soft);
+  }
+  .steps > li::before {
+    content: counter(s); position: absolute; left: 0; top: -2px;
+    width: 30px; height: 30px; border-radius: 9px;
+    display: grid; place-items: center;
+    font-family: var(--mono); font-weight: 700; font-size: 13px;
+    color: var(--accent); background: var(--accent-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  .steps > li b { color: var(--ink); font-weight: 700; }
+
+  /* ── Table (wizard fields / troubleshooting) ─────────────── */
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; background: var(--surface); }
+  thead th {
+    text-align: left; font-size: 12px; font-weight: 800;
+    letter-spacing: .04em; text-transform: uppercase; color: var(--muted);
+    padding: 13px 16px; background: var(--surface-2);
+    border-bottom: 1px solid var(--line); white-space: nowrap;
+  }
+  tbody td { padding: 15px 16px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; line-height: 1.65; }
+  tbody tr:last-child td { border-bottom: none; }
+  td b { color: var(--ink); font-weight: 700; }
+  .sec-badge {
+    display: inline-block; font-size: 11.5px; font-weight: 700;
+    padding: 3px 9px; border-radius: 999px;
+    color: var(--accent-ink); background: var(--accent-soft); white-space: nowrap;
+  }
+
+  /* ── Callout ─────────────────────────────────────────────── */
+  .note {
+    display: flex; gap: 13px; align-items: flex-start;
+    margin: 22px 0 0; padding: 16px 18px;
+    border-radius: 13px; font-size: 15.5px; line-height: 1.7;
+    background: var(--gold-soft);
+    border: 1px solid color-mix(in srgb, var(--gold) 32%, transparent);
+    color: color-mix(in srgb, var(--gold) 72%, var(--ink));
+  }
+  .note .ic { flex: none; font-size: 17px; line-height: 1.4; }
+  .note b { color: var(--gold); }
+
+  .quote {
+    margin: 16px 0 0; padding: 14px 18px;
+    border-left: 3px solid var(--accent);
+    background: var(--surface-2); border-radius: 0 11px 11px 0;
+    font-size: 15px; line-height: 1.7; color: var(--ink-soft);
+  }
+  .quote strong { display: block; color: var(--ink); margin-bottom: 4px; }
+
+  .subhead { margin: 34px 0 16px; font-size: 19px; font-weight: 800; letter-spacing: -.01em; display: flex; align-items: center; gap: 10px; }
+  .subhead .tag { font-size: 12px; font-weight: 800; color: #fff; background: var(--accent); padding: 3px 10px; border-radius: 999px; letter-spacing: .03em; }
+  .subhead .tag.gold { background: var(--gold-bright); color: #0b1120; }
+
+  /* ── Footer ──────────────────────────────────────────────── */
+  footer {
+    margin-top: 50px; padding: 40px 0 56px;
+    border-top: 1px solid var(--line);
+    color: var(--muted); font-size: 14.5px; line-height: 1.75;
+  }
+  footer .container { display: flex; flex-wrap: wrap; gap: 18px 40px; justify-content: space-between; align-items: flex-start; }
+  footer b { color: var(--ink); }
+  .shield { max-width: 52ch; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .btn:hover, .card:hover { transform: none; }
+  }
+  @media (max-width: 560px) {
+    .hero-inner { padding: 56px 20px 60px; }
+    section { padding: 48px 0 4px; }
+    .container { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <button class="theme-toggle" id="tt" aria-label="라이트/다크 전환" title="테마 전환">◐</button>
+    <p class="eyebrow gold">KIWOOM REST API · 자동매매</p>
+    <h1>아바타<span class="mark">.</span></h1>
+    <p class="lede">당신을 대신해 시장을 지켜보고 주문하는 <b>트레이 상주 자동매매 프로그램</b>.
+      다운로드부터 계좌 실행까지 다섯 단계로 안내합니다.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/gbsmfather/avatar-releases/releases" target="_blank" rel="noopener">최신 버전 다운로드 <span>→</span></a>
+      <a class="btn btn-ghost" href="#prep">준비물부터 보기 ↓</a>
+    </div>
+    <div class="hero-meta">
+      <span class="chip">아바타 V3.8</span>
+      <span class="chip-muted">Windows · 설치 불필요(단일 exe)</span>
+      <span class="chip-muted">실전(실계좌) 동작</span>
+    </div>
+  </div>
+</header>
+
+<nav class="stepnav" aria-label="단계 이동">
+  <a href="#prep"><b class="tnum">01</b> 준비물</a>
+  <a href="#install"><b class="tnum">02</b> 다운로드·설치</a>
+  <a href="#add"><b class="tnum">03</b> 아바타 추가</a>
+  <a href="#run"><b class="tnum">04</b> 실행</a>
+  <a href="#stop"><b class="tnum">05</b> 종료</a>
+</nav>
+
+<main>
+  <!-- 01 · 준비물 -->
+  <section id="prep" class="container">
+    <div class="sec-head">
+      <span class="sec-kicker"><span class="n">01</span> 시작 전 준비물</span>
+      <h2>아바타 추가에 필요한 자료 4가지</h2>
+      <p>모두 외부 서비스에서 발급·설정하는 값이라 시간이 걸릴 수 있습니다. <b>설치보다 먼저</b> 준비해 두면 계좌 등록이 한 번에 끝납니다.
+        각 카드가 만들어 내는 값이 곧 설정 마법사에 입력할 항목입니다.</p>
+    </div>
+
+    <div class="prep-grid">
+      <article class="card">
+        <div class="card-top">
+          <div class="card-num tnum">01</div>
+          <div><div class="card-src">Google Sheets</div></div>
+        </div>
+        <h3>구글 시트 사본 만들기</h3>
+        <p>아바타는 매매 대상·수량을 시트에서 읽고 상태를 기록합니다. 배포본 <b>“아바타 V3.8”</b>을 내 계정으로 복사해 씁니다.</p>
+        <ul>
+          <li>아래 <code>…/copy</code> 링크 접속 → <b>사본 만들기</b></li>
+          <li>열린 사본의 <b>주소창 URL 전체 복사</b></li>
+          <li class="warn">원본 URL이 아닌 <b>내 사본</b> URL이어야 함</li>
+        </ul>
+        <div class="urlbox">https://docs.google.com/spreadsheets/d/1Fu4cXOxdI_QGbNN-3sbXpk5SzvpvfLxuRbfYIhWDCsY/copy</div>
+        <div class="feeds">→ 마법사 <b>시트 URL</b></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="card-num tnum">02</div>
+          <div><div class="card-src">Google Cloud Console</div></div>
+        </div>
+        <h3>서비스계정 JSON + 시트 공유</h3>
+        <p>사람 대신 <b>서비스계정</b>(로봇 계정)이 시트에 접근합니다. JSON 키를 받고, 그 계정을 시트에 공유해야 합니다.</p>
+        <ul>
+          <li><b>Sheets API</b> 사용 설정</li>
+          <li>서비스계정 생성 → <b>키 추가 → JSON</b> 다운로드</li>
+          <li>JSON의 <code>client_email</code> 을 시트에 <b>편집자로 공유</b></li>
+          <li class="warn">공유 누락 시 시트 접근 오류</li>
+        </ul>
+        <div class="feeds">→ 마법사 <b>서비스계정 JSON</b>(파일)</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="card-num tnum">03</div>
+          <div><div class="card-src">openapi.kiwoom.com</div></div>
+        </div>
+        <h3>키움 앱키·시크릿키 + IP 등록</h3>
+        <p>주문·조회·시세를 키움 REST API로 처리합니다. 키를 발급받고 <b>실행할 PC의 IP를 등록</b>합니다.</p>
+        <ul>
+          <li class="warn"><b>계좌 등록이 먼저</b> — 그래야 키 발급 화면으로 진행</li>
+          <li>앱키·시크릿키 발급 <b>(다운로드 1회)</b></li>
+          <li>실행 PC <b>공인 IP 등록</b>(최대 10개)</li>
+          <li class="warn">미등록 IP 호출은 거부됨</li>
+        </ul>
+        <div class="feeds">→ 마법사 <b>앱키</b> · <b>시크릿키</b></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="card-num tnum">04</div>
+          <div><div class="card-src">Telegram</div></div>
+        </div>
+        <h3>텔레그램 봇 토큰 + chat_id</h3>
+        <p>실행·체결 알림과 원격 명령에 씁니다. 봇을 만들고 내 대화 id를 확인합니다.</p>
+        <ul>
+          <li><b>@BotFather</b> → <code>/newbot</code> → <b>봇 토큰</b></li>
+          <li>chat_id: 봇에 메시지 후 <code>getUpdates</code></li>
+          <li>또는 <b>@userinfobot</b> 으로 내 id 확인</li>
+        </ul>
+        <div class="feeds">→ 마법사 <b>봇 토큰</b> · <b>chat_id</b></div>
+      </article>
+    </div>
+
+    <div class="note">
+      <span class="ic">🔒</span>
+      <div><b>앱키·시크릿키·서비스계정 JSON·봇 토큰</b> 은 실제 계좌와 시트의 열쇠입니다. 타인과 공유하거나 공개된 곳에 올리지 마세요.</div>
+    </div>
+  </section>
+
+  <!-- 02 · 설치 -->
+  <section id="install" class="container">
+    <div class="sec-head">
+      <span class="sec-kicker"><span class="n">02</span> 다운로드 &amp; 설치</span>
+      <h2>받아서 실행하면 트레이에 상주합니다</h2>
+      <p>아바타는 설치가 필요 없는 <b>단일 실행 파일</b>(포터블 exe)입니다. 창이 없는 트레이 앱이라, 모든 조작은 트레이 아이콘 <b>우클릭 메뉴</b>에서 합니다.</p>
+    </div>
+    <ol class="steps two">
+      <li><b>릴리즈 페이지</b>에서 최신 <code>Avatar.exe</code> 를 내려받습니다. 최상단 최신 릴리즈의 첨부 파일을 받으세요.
+        <div class="urlbox">https://github.com/gbsmfather/avatar-releases/releases</div></li>
+      <li>받은 <code>Avatar.exe</code> 를 원하는 폴더(예: <code>C:\Avatar\</code>)에 두고 <b>더블클릭</b>해 실행합니다.</li>
+      <li><b>“Windows의 PC 보호”</b>(SmartScreen) 경고가 뜨면 <b>추가 정보 → 실행</b> 을 누릅니다.</li>
+      <li>작업표시줄 시계 옆 <b>트레이에 아바타 아이콘</b>이 나타납니다. 안 보이면 <code>^</code>(숨겨진 아이콘 표시)를 확인하세요.</li>
+    </ol>
+  </section>
+
+  <!-- 03 · 아바타 추가 -->
+  <section id="add" class="container">
+    <div class="sec-head">
+      <span class="sec-kicker"><span class="n">03</span> 아바타 추가 · 설정 마법사</span>
+      <h2>준비한 값을 넣어 계좌를 등록</h2>
+      <p>트레이 <b>우클릭 → “아바타 추가…”</b> 를 누르면 내 컴퓨터 안에서만 열리는 설정 페이지가 뜹니다. 아래 값을 입력하세요 —
+        키·토큰은 붙여넣기 확인을 위해 <b>평문으로 표시</b>됩니다.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>구역</th><th>항목</th><th>입력값</th><th>출처</th></tr></thead>
+        <tbody>
+          <tr><td><span class="sec-badge">아바타</span></td><td><b>이름</b></td><td>트레이에 표시될 계좌 이름 (예: <code>국내주식</code>)</td><td>자유</td></tr>
+          <tr><td><span class="sec-badge">키움</span></td><td><b>앱키</b></td><td>키움 App Key</td><td>준비물 03</td></tr>
+          <tr><td><span class="sec-badge">키움</span></td><td><b>시크릿키</b></td><td>키움 Secret Key</td><td>준비물 03</td></tr>
+          <tr><td><span class="sec-badge">텔레그램</span></td><td><b>봇 토큰</b></td><td>텔레그램 봇 토큰</td><td>준비물 04</td></tr>
+          <tr><td><span class="sec-badge">텔레그램</span></td><td><b>chat_id</b></td><td>텔레그램 chat_id(숫자)</td><td>준비물 04</td></tr>
+          <tr><td><span class="sec-badge">구글 시트</span></td><td><b>시트 URL</b></td><td>내 시트 사본 주소</td><td>준비물 01</td></tr>
+          <tr><td><span class="sec-badge">구글 시트</span></td><td><b>서비스계정 JSON</b></td><td>다운로드한 JSON 파일 선택</td><td>준비물 02</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ol class="steps" style="margin-top:22px">
+      <li><b>입력 확인</b> 을 눌러 값 검사 — 오류가 있으면 어떤 항목인지 표시됩니다.</li>
+      <li>이상 없으면 <b>저장</b> — 설정 페이지가 자동으로 닫히고 트레이 “아바타” 목록에 추가됩니다.</li>
+    </ol>
+    <div class="note"><span class="ic">💡</span><div>여러 계좌를 운용하려면 <b>“아바타 추가…”</b> 를 반복해 계좌별로 등록하면 됩니다.</div></div>
+  </section>
+
+  <!-- 04 · 실행 -->
+  <section id="run" class="container">
+    <div class="sec-head">
+      <span class="sec-kicker"><span class="n">04</span> 아바타 실행</span>
+      <h2>계좌를 클릭하면 매매가 시작됩니다</h2>
+    </div>
+    <ol class="steps two">
+      <li>트레이 <b>우클릭 → “아바타”</b> 에 마우스를 올리면 등록된 계좌 목록이 나옵니다.</li>
+      <li>실행할 <b>계좌 이름을 클릭</b> — 시작되면 메뉴에 <b>체크 표시</b>가 붙습니다.</li>
+      <li>정상 기동되면 <b>텔레그램으로 시작 알림</b>이 옵니다.</li>
+      <li><b>장중</b>이면 시트 설정대로 매매, <b>장 마감</b>이면 접속만 하고 정산 후 대기합니다.</li>
+    </ol>
+    <div class="note"><span class="ic">📈</span><div>실행 상태·체결 이벤트는 <b>텔레그램</b>으로 통지되고 <b>구글 시트</b>에도 기록됩니다. 프로그램 창을 계속 열어둘 필요가 없습니다.</div></div>
+  </section>
+
+  <!-- 05 · 종료 -->
+  <section id="stop" class="container">
+    <div class="sec-head">
+      <span class="sec-kicker"><span class="n">05</span> 아바타 종료</span>
+      <h2>계좌 중지 → 앱 종료, 두 단계</h2>
+      <p>앱은 <b>실행 중인 계좌가 하나라도 있으면 종료되지 않도록</b> 막혀 있습니다 — 주문을 남긴 채 꺼지는 것을 방지합니다.</p>
+    </div>
+
+    <div class="subhead"><span class="tag gold">5-1</span> 계좌 중지 <span style="font-weight:600;font-size:14px;color:var(--muted)">— 미체결 자동 취소 포함</span></div>
+    <ol class="steps">
+      <li>트레이 <b>우클릭 → “아바타” → 실행 중(체크된) 계좌 클릭</b>.</li>
+      <li>확인창에서 <b>예</b> 를 누르면 중지가 시작됩니다.
+        <div class="quote"><strong>Avatar 계좌 중지 확인</strong>계좌 아바타 ‘○○’ 를 중지합니다. 미체결 주문이 있으면 모두 취소한 뒤 중지합니다. 중지하시겠습니까?</div></li>
+      <li><b>진행 창</b>이 아바타의 현재 단계(<code>미체결 취소 중…</code>, 랩업 중 등)를 실시간 표시하고, 정리가 끝나면 자동으로 닫힙니다.</li>
+    </ol>
+
+    <div class="subhead"><span class="tag">5-2</span> 아바타(앱) 종료</div>
+    <ol class="steps">
+      <li><b>모든 계좌를 중지</b>하면 트레이 <b>“종료”</b> 가 활성화됩니다. 실행 중이면 <b>“종료 (실행 중 계좌 중지 필요)”</b> 로 비활성입니다.</li>
+      <li><b>“종료”</b> 클릭 → 확인창에서 <b>예</b> → 트레이 앱이 종료되고 아이콘이 사라집니다.
+        <div class="quote"><strong>Avatar 종료 확인</strong>Avatar 트레이를 종료합니다. 종료하시겠습니까?</div></li>
+    </ol>
+    <div class="note"><span class="ic">⚠️</span><div>강제 종료·전원 차단 등 <b>정상 절차가 아닌 종료</b>에서는 미체결 자동 취소가 동작하지 않을 수 있습니다. 종료는 반드시 위 절차를 따르세요.</div></div>
+  </section>
+
+  <!-- 부록 -->
+  <section id="faq" class="container">
+    <div class="sec-head">
+      <span class="sec-kicker"><span class="n">＋</span> 부록 · 문제 해결</span>
+      <h2>자주 겪는 문제</h2>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>증상</th><th>확인 · 해결</th></tr></thead>
+        <tbody>
+          <tr><td><b>트레이 아이콘이 안 보임</b></td><td>트레이의 <code>^</code>(숨겨진 아이콘 표시)를 눌러 확인</td></tr>
+          <tr><td><b>실행 시 “PC 보호” 경고</b></td><td>SmartScreen → <b>추가 정보 → 실행</b></td></tr>
+          <tr><td><b>“아바타 추가…” 가 비활성</b></td><td>이전 설정 마법사가 아직 열려 있음. 브라우저 탭을 닫고 잠시 뒤 재시도(일정 시간 후 자동 정리)</td></tr>
+          <tr><td><b>시트 접근/권한 오류</b></td><td><b>서비스계정 이메일을 시트에 편집자로 공유</b>했는지 확인 (준비물 02)</td></tr>
+          <tr><td><b>키움 API 호출 거부</b></td><td><b>실행 PC 공인 IP를 키움에 등록</b>했는지, IP가 바뀌지 않았는지 확인 (준비물 03)</td></tr>
+          <tr><td><b>텔레그램 알림이 안 옴</b></td><td><b>chat_id</b> 가 정확한지, 봇에게 먼저 메시지를 보냈는지 확인</td></tr>
+          <tr><td><b>계좌 실행이 곧바로 꺼짐</b></td><td>트레이의 예상 밖 종료 알림에 안내된 <code>log</code> 폴더의 로그를 확인</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="shield">
+      <b>보안 &amp; 데이터</b><br>
+      설정값은 내 PC의 프로필 폴더 <code>%AppData%\Avatar\&lt;계좌&gt;</code> 에만 보관됩니다.
+      여러 사람이 쓰는 PC에서는 계정 잠금·폴더 접근 권한에 유의하세요.
+    </div>
+    <div>
+      아바타 사용자 가이드 · <b>아바타 V3.8</b><br>
+      화면 구성·필드는 버전에 따라 조금씩 다를 수 있습니다.
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    // theme toggle (standalone) — Artifact viewer also stamps data-theme
+    var root = document.documentElement, tt = document.getElementById("tt");
+    tt && tt.addEventListener("click", function () {
+      var dark = matchMedia("(prefers-color-scheme: dark)").matches;
+      var cur = root.getAttribute("data-theme") || (dark ? "dark" : "light");
+      root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+    });
+    // active section highlight
+    var links = Array.prototype.slice.call(document.querySelectorAll(".stepnav a"));
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute("href").slice(1)] = a; });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          links.forEach(function (l) { l.classList.remove("active"); });
+          var a = map[e.target.id]; a && a.classList.add("active");
+        }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    document.querySelectorAll("main section[id]").forEach(function (s) { obs.observe(s); });
+  })();
+</script>
+</body>
+</html>
