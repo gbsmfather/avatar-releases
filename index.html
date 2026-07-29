@@ -545,6 +545,7 @@
       <li><b>“Windows의 PC 보호”</b>(SmartScreen) 경고가 뜨면 <b>추가 정보 → 실행</b> 을 누릅니다.</li>
       <li>작업표시줄 시계 옆 <b>트레이에 아바타 아이콘</b>이 나타납니다. 안 보이면 <code>^</code>(숨겨진 아이콘 표시)를 확인하세요.</li>
     </ol>
+    <div class="note"><span class="ic">🔄</span><div><b>업데이트는 자동입니다.</b> 아바타는 매일 <b>프리장 시작 때</b> 새 버전을 확인해 스스로 업데이트하고, 실행 중이던 계좌는 업데이트 후 <b>자동으로 다시 시작</b>됩니다. 지금 바로 확인하려면 트레이 <b>우클릭 → “업데이트 확인”</b> 을 누르세요.</div></div>
   </section>
 
   <!-- 04 · 아바타 추가 -->
@@ -585,10 +586,18 @@
     <ol class="steps two">
       <li>트레이 <b>우클릭 → “아바타”</b> 에 마우스를 올리면 등록된 계좌 목록이 나옵니다.</li>
       <li>실행할 <b>계좌 이름을 클릭</b> — 시작되면 메뉴에 <b>체크 표시</b>가 붙습니다.</li>
-      <li>정상 기동되면 <b>텔레그램으로 시작 알림</b>이 옵니다.</li>
+      <li>정상 기동되면 <b>텔레그램으로 시작 알림</b>이 옵니다 — 먼저 <b>“🚶 Avatar 출근하는 중…”</b>(기동 시작), 시트 준비가 끝나면 <b>“Avatar 출근했습니다”</b>(매매 준비 완료) 순서로 두 번 옵니다.</li>
       <li><b>장중</b>이면 시트 설정대로 매매, <b>장 마감</b>이면 접속만 하고 정산 후 대기합니다.</li>
     </ol>
     <div class="note"><span class="ic">📈</span><div>실행 상태·체결 이벤트는 <b>텔레그램</b>으로 통지되고 <b>구글 시트</b>에도 기록됩니다. 프로그램 창을 계속 열어둘 필요가 없습니다.</div></div>
+
+    <div class="subhead" style="margin-top:40px"><span class="tag">자동</span> 자동 시작 — 트레이가 뜰 때 계좌를 자동 실행</div>
+    <p style="margin:0 0 14px; color:var(--ink-soft); font-size:16px">매번 계좌를 손으로 클릭하지 않아도 됩니다. 자동 시작으로 표시해 두면 <b>아바타(트레이)를 실행할 때 그 계좌가 함께 시작</b>됩니다 — PC 재부팅 후에도 트레이만 실행하면 매매가 이어집니다.</p>
+    <ol class="steps">
+      <li>트레이 <b>우클릭 → “자동 시작”</b> 에 마우스를 올리면 계좌 목록이 나옵니다.</li>
+      <li><b>자동 시작할 계좌를 클릭</b>해 체크합니다(다시 클릭하면 해제).</li>
+      <li>설정은 <b>다음 트레이 실행부터</b> 적용됩니다 — 트레이가 뜨면 체크된 계좌가 자동 실행되고 <b>풍선 알림</b>으로 알려줍니다.</li>
+    </ol>
 
     <div class="subhead" style="margin-top:40px"><span class="tag">확인</span> 텔레그램으로 실행 확인</div>
     <p style="margin:0 0 8px; color:var(--ink-soft); font-size:16px">아바타가 잘 돌고 있는지 <b>텔레그램 명령어</b>로 바로 확인할 수 있습니다. 준비물 1‑4에서 등록한 <b>내 대화(chat_id)</b>에서 명령을 보내면 봇이 답합니다 — 먼저 <code>/status</code> 를 보내보세요.</p>
@@ -599,7 +608,7 @@
       <table>
         <thead><tr><th>명령어</th><th>설명</th></tr></thead>
         <tbody>
-          <tr><td><code>/status</code></td><td>실행/일시정지 상태 · 모드 · 마지막 사이클 시각 — <b>실행 확인의 핵심</b></td></tr>
+          <tr><td><code>/status</code></td><td>실행/일시정지 상태 · 모드 · 마지막 사이클 + <b>접수 중인 주문 · 오늘 체결</b> 요약 — <b>실행 확인의 핵심</b></td></tr>
           <tr><td><code>/help</code></td><td>전체 명령 목록 보기</td></tr>
           <tr><td><code>/balance</code></td><td>보유 잔고 (종목 · 수량 · 평단)</td></tr>
           <tr><td><code>/deposit</code></td><td>주문가능금액(예수금)</td></tr>
@@ -650,6 +659,7 @@
         <div class="quote"><strong>Avatar 종료 확인</strong>Avatar 트레이를 종료합니다. 종료하시겠습니까?</div></li>
     </ol>
     <div class="note"><span class="ic">⚠️</span><div>강제 종료·전원 차단 등 <b>정상 절차가 아닌 종료</b>에서는 미체결 자동 취소가 동작하지 않을 수 있습니다. 종료는 반드시 위 절차를 따르세요.</div></div>
+    <div class="note"><span class="ic">🗑️</span><div>더 이상 쓰지 않는 계좌는 <b>중지한 뒤</b> 트레이 <b>우클릭 → “아바타 삭제…”</b> 에서 지울 수 있습니다(확인창이 뜹니다). 실행 중인 계좌는 삭제 목록에 나타나지 않습니다.</div></div>
   </section>
 
   <!-- 부록 -->
