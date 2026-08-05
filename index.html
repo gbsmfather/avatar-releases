@@ -536,7 +536,7 @@
     <div class="sec-head">
       <span class="sec-kicker"><span class="n">03</span> 다운로드 &amp; 설치</span>
       <h2>받아서 실행하면 트레이에 상주합니다</h2>
-      <p>아바타는 설치가 필요 없는 <b>단일 실행 파일</b>(포터블 exe)입니다. 창이 없는 트레이 앱이라, 모든 조작은 트레이 아이콘 <b>우클릭 메뉴</b>에서 합니다.</p>
+      <p>이 프로그램은 설치가 필요 없는 <b>단일 실행 파일</b>(포터블 exe)입니다. 창이 없는 트레이 앱이라, 모든 조작은 트레이 아이콘 <b>우클릭 메뉴</b>에서 합니다.</p>
     </div>
     <ol class="steps two">
       <li><b>릴리즈 페이지</b>에서 최신 <code>Avatar.exe</code> 를 내려받습니다. 최상단 최신 릴리즈의 첨부 파일을 받으세요.
@@ -545,7 +545,7 @@
       <li><b>“Windows의 PC 보호”</b>(SmartScreen) 경고가 뜨면 <b>추가 정보 → 실행</b> 을 누릅니다.</li>
       <li>작업표시줄 시계 옆 <b>트레이에 아바타 아이콘</b>이 나타납니다. 안 보이면 <code>^</code>(숨겨진 아이콘 표시)를 확인하세요.</li>
     </ol>
-    <div class="note"><span class="ic">🔄</span><div><b>업데이트는 자동입니다.</b> 아바타는 매일 <b>프리장 시작 때</b> 새 버전을 확인해 스스로 업데이트하고, 실행 중이던 계좌는 업데이트 후 <b>자동으로 다시 시작</b>됩니다. 지금 바로 확인하려면 트레이 <b>우클릭 → “업데이트 확인”</b> 을 누르세요.</div></div>
+    <div class="note"><span class="ic">🔄</span><div><b>업데이트는 자동입니다.</b> 트레이는 매일 <b>프리장 시작 때</b> 새 버전을 확인해 스스로 업데이트하고, 실행 중이던 계좌는 업데이트 후 <b>자동으로 다시 시작</b>됩니다. 지금 바로 확인하려면 트레이 <b>우클릭 → “업데이트 확인”</b> 을 누르세요.</div></div>
   </section>
 
   <!-- 04 · 아바타 추가 -->
@@ -592,7 +592,7 @@
     <div class="note"><span class="ic">📈</span><div>실행 상태·체결 이벤트는 <b>텔레그램</b>으로 통지되고 <b>구글 시트</b>에도 기록됩니다. 프로그램 창을 계속 열어둘 필요가 없습니다.</div></div>
 
     <div class="subhead" style="margin-top:40px"><span class="tag">자동</span> 자동 시작 — 트레이가 뜰 때 계좌를 자동 실행</div>
-    <p style="margin:0 0 14px; color:var(--ink-soft); font-size:16px">매번 계좌를 손으로 클릭하지 않아도 됩니다. 자동 시작으로 표시해 두면 <b>아바타(트레이)를 실행할 때 그 계좌가 함께 시작</b>됩니다 — PC 재부팅 후에도 트레이만 실행하면 매매가 이어집니다.</p>
+    <p style="margin:0 0 14px; color:var(--ink-soft); font-size:16px">매번 계좌를 손으로 클릭하지 않아도 됩니다. 자동 시작으로 표시해 두면 <b>트레이를 실행할 때 그 계좌가 함께 시작</b>됩니다 — PC 재부팅 후에도 트레이만 실행하면 매매가 이어집니다.</p>
     <ol class="steps">
       <li>트레이 <b>우클릭 → “자동 시작”</b> 에 마우스를 올리면 계좌 목록이 나옵니다.</li>
       <li><b>자동 시작할 계좌를 클릭</b>해 체크합니다(다시 클릭하면 해제).</li>
@@ -615,6 +615,7 @@
           <tr><td><code>/unfilled</code> [심볼]</td><td>미체결 주문 목록 (심볼 생략 시 전체)</td></tr>
           <tr><td><code>/orders</code> [n]</td><td>최근 주문 원장 n건 (기본 10)</td></tr>
           <tr><td><code>/quote</code> &lt;심볼&gt;</td><td>현재가 조회</td></tr>
+          <tr><td><code>/reload</code></td><td>시트를 완전히 새로 읽기 (시트를 손으로 고친 뒤 즉시 반영)</td></tr>
           <tr><td><code>/log</code> [n]</td><td>최근 로그 n줄 (기본 30)</td></tr>
         </tbody>
       </table>
@@ -652,7 +653,7 @@
       <li><b>진행 창</b>이 아바타의 현재 단계(<code>미체결 취소 중…</code>, 랩업 중 등)를 실시간 표시하고, 정리가 끝나면 자동으로 닫힙니다.</li>
     </ol>
 
-    <div class="subhead"><span class="tag">6-2</span> 아바타(앱) 종료</div>
+    <div class="subhead"><span class="tag">6-2</span> 트레이 종료</div>
     <ol class="steps">
       <li><b>모든 계좌를 중지</b>하면 트레이 <b>“종료”</b> 가 활성화됩니다. 실행 중이면 <b>“종료 (실행 중 계좌 중지 필요)”</b> 로 비활성입니다.</li>
       <li><b>“종료”</b> 클릭 → 확인창에서 <b>예</b> → 트레이 앱이 종료되고 아이콘이 사라집니다.
