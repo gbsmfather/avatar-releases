@@ -622,6 +622,10 @@
       <li>설정은 <b>다음 트레이 실행부터</b> 적용됩니다 — 트레이가 뜨면 체크된 계좌가 자동 실행되고 <b>풍선 알림</b>으로 알려줍니다.</li>
     </ol>
 
+    <div class="subhead" style="margin-top:40px"><span class="tag">수동</span> 수동 매수·매도 — 아바타와 같은 계좌에서 직접 주문하기</div>
+    <p style="margin:0 0 14px; color:var(--ink-soft); font-size:16px">아바타가 운용 중인 계좌에서 HTS/MTS 로 직접 주문해도 됩니다. 아바타는 <b>자기가 낸 주문만 취소</b>하고, 직접 낸 주문은 관리 종목이라도 건드리지 않습니다(감지하면 텔레그램으로 하루 1회 알려줍니다). 퇴근·계좌 중지·<code>/cancelall</code> 때도 수동 주문은 남습니다 — 지우려면 직접 취소하거나 <code>/cancel &lt;주문번호&gt;</code>를 쓰세요.</p>
+    <div class="note"><span class="ic">⚠️</span><div><b>한 가지 규칙</b>: 수동 주문 가격을 <b>아바타의 회차(가이드) 가격과 겹치지 않게</b> 하세요. 같은 가격에 아바타 주문과 함께 걸리면 그 회차가 이중 체결될 수 있습니다(겹침이 감지되면 경고 알림이 옵니다). 수동 체결로 잔고·평단이 바뀌면 시트가 재계산하고 아바타가 자기 주문을 새 가격으로 다시 겁니다.</div></div>
+
     <div class="subhead" style="margin-top:40px"><span class="tag">정산</span> 수동 정산 — 지금 바로 시트에 정산 기록하기</div>
     <p style="margin:0 0 14px; color:var(--ink-soft); font-size:16px">당일 정산(랩업)은 장 마감 후 자동으로 돌지만, 원할 때 손으로도 돌릴 수 있습니다. 계좌 잔고·손익을 시트에 기록만 하며 <b>미체결 주문은 취소하지 않습니다</b>.</p>
     <ol class="steps">
@@ -668,7 +672,7 @@
           <tr><td><code>/pause</code> · <code>/resume</code></td><td>매매 일시정지 / 재개</td></tr>
           <tr><td><code>/buy</code> · <code>/sell</code> &lt;심볼&gt; &lt;수량&gt; &lt;가격&gt; [유형]</td><td>수동 매수 / 매도 <b>(확인 필요)</b></td></tr>
           <tr><td><code>/cancel</code> &lt;주문번호&gt; &lt;심볼&gt;</td><td>특정 주문 취소 <b>(확인 필요)</b></td></tr>
-          <tr><td><code>/cancelall</code> &lt;심볼&gt; &lt;매수|매도&gt;</td><td>한 종목의 방향 전체 취소 <b>(확인 필요)</b></td></tr>
+          <tr><td><code>/cancelall</code> &lt;심볼&gt; &lt;매수|매도&gt;</td><td>한 종목의 방향 전체 취소 — <b>아바타가 낸 주문만</b> <b>(확인 필요)</b></td></tr>
           <tr><td><code>/wrapup</code></td><td>수동 정산 — 잔고·손익을 시트에 즉시 기록, 미체결 취소 없음. <b>거래 세션 중에는 불가</b> <b>(확인 필요)</b></td></tr>
         </tbody>
       </table>
