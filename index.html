@@ -276,6 +276,29 @@
     font-family: var(--mono); font-size: 12.5px; color: var(--ink-soft);
     overflow-x: auto; white-space: nowrap;
   }
+  /* 트레이 우클릭 메뉴 지도 · 입력 확인 결과 예시 */
+  .codebox {
+    margin: 14px 0 0; padding: 14px 16px;
+    background: var(--surface-2); border: 1px solid var(--line);
+    border-radius: 12px;
+    font-family: var(--mono); font-size: 13px; line-height: 1.75; color: var(--ink-soft);
+    overflow-x: auto; white-space: pre;
+  }
+  .codebox b { color: var(--accent-ink); font-weight: 700; }
+
+  /* 트레이 우클릭 메뉴 모형 */
+  .menumock {
+    margin: 14px 0 0; max-width: 480px;
+    border: 1px solid var(--line); border-radius: 12px;
+    background: var(--surface); box-shadow: var(--shadow); overflow: hidden;
+  }
+  .mm-row { display: flex; align-items: center; gap: 10px; padding: 9px 14px; font-size: 15px; color: var(--ink-soft); }
+  .mm-row .mm-label { font-weight: 600; }
+  .mm-row .mm-arrow { margin-left: auto; color: var(--muted); font-size: 12px; }
+  .mm-row.accent { background: var(--accent-soft); }
+  .mm-row.accent .mm-label { color: var(--accent-ink); font-weight: 800; }
+  .mm-row .mm-note { margin-left: auto; font-size: 12.5px; color: var(--accent); white-space: nowrap; }
+  .mm-sep { height: 1px; background: var(--line); }
 
   /* ── Numbered step list ──────────────────────────────────── */
   .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; counter-reset: s; }
@@ -538,14 +561,67 @@
       <h2>받아서 실행하면 트레이에 상주합니다</h2>
       <p>이 프로그램은 설치가 필요 없는 <b>단일 실행 파일</b>(포터블 exe)입니다. 창이 없는 트레이 앱이라, 모든 조작은 트레이 아이콘 <b>우클릭 메뉴</b>에서 합니다.</p>
     </div>
+    <div class="subhead"><span class="tag">3-1</span> 파일 받기</div>
     <ol class="steps two">
-      <li><b>릴리즈 페이지</b>에서 최신 <code>Avatar.exe</code> 를 내려받습니다. 최상단 최신 릴리즈의 첨부 파일을 받으세요.
+      <li><b>릴리즈 페이지</b>를 엽니다.
         <div class="urlbox">https://github.com/gbsmfather/avatar-releases/releases</div></li>
-      <li>받은 <code>Avatar.exe</code> 를 원하는 폴더(예: <code>C:\Avatar\</code>)에 두고 <b>더블클릭</b>해 실행합니다.</li>
-      <li><b>“Windows의 PC 보호”</b>(SmartScreen) 경고가 뜨면 <b>추가 정보 → 실행</b> 을 누릅니다.</li>
-      <li>작업표시줄 시계 옆 <b>트레이에 아바타 아이콘</b>이 나타납니다. 안 보이면 <code>^</code>(숨겨진 아이콘 표시)를 확인하세요.</li>
+      <li>맨 위 <b>최신 릴리즈</b>의 <b>Assets</b>(첨부 파일) 목록에서 <code>Avatar.exe</code> 를 클릭해 내려받습니다. 브라우저가 막으면 <b>[유지]/[계속]</b> — 서명이 없는 배포 파일이라 나오는 경고입니다.</li>
+      <li>받은 파일을 원하는 폴더(예: <code>C:\Avatar\</code>)에 둡니다. 바탕화면 바로가기를 만들어 두면 편합니다.</li>
     </ol>
-    <div class="note"><span class="ic">🔄</span><div><b>업데이트는 자동입니다.</b> 트레이는 매일 <b>프리장 시작 때</b> 새 버전을 확인하고, 있으면 <b>묻지 않고 바로</b> 실행 중인 계좌를 정산·종료하고 업데이트한 뒤 <b>자동으로 다시 시작</b>합니다. 지금 바로 확인하려면 트레이 <b>우클릭 → “업데이트 확인”</b> 을 누르세요 — 직접 누른 경우엔 [예/아니오] 창이 뜹니다.</div></div>
+
+    <div class="subhead" style="margin-top:34px"><span class="tag">3-2</span> 처음 실행 — 화면에 무엇이 뜨는지</div>
+    <ol class="steps two">
+      <li><code>Avatar.exe</code> 를 <b>더블클릭</b>합니다.</li>
+      <li><b>“Windows의 PC 보호”</b>(SmartScreen) 파란 창이 뜨면 <b>[추가 정보]</b> → 그때 나타나는 <b>[실행]</b>. 보통 처음 한 번만 뜹니다.</li>
+      <li><b>검은 콘솔 창</b>이 떠서 <code>Avatar 준비 중...</code> → <code>Avatar 1.18.0 실행</code> 이 지나갑니다. 첫 실행은 본체를 푸느라 <b>수십 초</b> 걸릴 수 있고, 끝나면 <b>저절로 닫힙니다</b> — 닫히는 것이 정상입니다.</li>
+      <li>트레이에 <b>아바타 아이콘</b>이 생기고 잠시 뒤 <b>풍선 알림</b>이 한 번 뜹니다 — “아바타가 트레이에서 실행 중입니다…”.</li>
+      <li>아이콘이 안 보이면 <code>^</code>(숨겨진 아이콘 표시) 안을 확인하고, <b>작업표시줄로 끌어다 놓아</b> 꺼내 두세요. 아이콘 색과 툴팁이 곧 상태 표시입니다.</li>
+    </ol>
+    <div class="tablewrap" style="margin-top:18px">
+      <table>
+        <thead><tr><th>실행했는데 이런 게 뜬다면</th><th>뜻 · 할 일</th></tr></thead>
+        <tbody>
+          <tr><td>검은 창이 떴다 닫히고 트레이 아이콘이 생김</td><td>정상입니다</td></tr>
+          <tr><td><code>Avatar 가 이미 실행 중입니다. 트레이 아이콘을 확인하세요.</code></td><td>이미 떠 있어 중복 실행이 막힌 것 — <code>^</code> 안까지 트레이를 확인하세요</td></tr>
+          <tr><td>검은 창은 닫혔는데 아이콘이 끝내 안 보임</td><td>백신 차단 가능성 — <code>%LOCALAPPDATA%\Avatar\bootstrap.log</code> 의 마지막 줄 확인 후 다시 실행</td></tr>
+          <tr><td><code>Avatar 앱을 준비하지 못했습니다…</code></td><td>디스크 공간·권한 문제 — 공간을 확보한 뒤 다시 실행</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead" style="margin-top:34px"><span class="tag">3-3</span> 트레이 메뉴 한눈에 보기</div>
+    <p style="margin:0 0 14px; color:var(--ink-soft); font-size:16px">아이콘을 우클릭하면 아래 메뉴가 나옵니다. <code>▸</code> 가 붙은 항목은 마우스를 올리면 하위 목록이 펼쳐집니다.
+      <b>처음이라면 ④ “아바타 추가…” 하나만 쓰면 됩니다.</b></p>
+    <div class="menumock">
+      <div class="mm-row"><span class="mk">1</span><span class="mm-label">아바타</span><span class="mm-arrow">▸</span></div>
+      <div class="mm-row"><span class="mk">2</span><span class="mm-label">자동 시작</span><span class="mm-arrow">▸</span></div>
+      <div class="mm-row"><span class="mk">3</span><span class="mm-label">정산(랩업)</span><span class="mm-arrow">▸</span></div>
+      <div class="mm-sep"></div>
+      <div class="mm-row accent"><span class="mk">4</span><span class="mm-label">아바타 추가…</span><span class="mm-note">← 계좌 등록은 여기서 시작</span></div>
+      <div class="mm-row"><span class="mk">5</span><span class="mm-label">이름 변경</span><span class="mm-arrow">▸</span></div>
+      <div class="mm-row"><span class="mk">6</span><span class="mm-label">아바타 삭제…</span><span class="mm-arrow">▸</span></div>
+      <div class="mm-sep"></div>
+      <div class="mm-row"><span class="mk">7</span><span class="mm-label">업데이트 확인</span></div>
+      <div class="mm-sep"></div>
+      <div class="mm-row"><span class="mk">8</span><span class="mm-label">종료</span></div>
+    </div>
+    <div class="tablewrap" style="margin-top:16px">
+      <table>
+        <thead><tr><th>표시</th><th>메뉴</th><th>하는 일</th></tr></thead>
+        <tbody>
+          <tr><td><span class="mk">1</span></td><td><b>아바타</b></td><td>등록한 계좌 목록. 이름을 클릭하면 <b>시작</b>, 실행 중인 계좌를 클릭하면 <b>중지</b>(실행 중이면 ✓)</td></tr>
+          <tr><td><span class="mk">2</span></td><td><b>자동 시작</b></td><td>트레이가 뜰 때 함께 시작할 계좌를 체크</td></tr>
+          <tr><td><span class="mk">3</span></td><td><b>정산(랩업)</b></td><td>지금 바로 당일 정산을 시트에 기록(미체결 취소 없음)</td></tr>
+          <tr><td><span class="mk">4</span></td><td><b>아바타 추가…</b></td><td>설정 마법사를 열어 계좌를 등록 — 아래 <b>04</b></td></tr>
+          <tr><td><span class="mk">5</span></td><td><b>이름 변경</b></td><td>계좌 표시 이름 바꾸기(중지 상태 계좌만)</td></tr>
+          <tr><td><span class="mk">6</span></td><td><b>아바타 삭제…</b></td><td>계좌를 영구 삭제(중지 상태 계좌만)</td></tr>
+          <tr><td><span class="mk">7</span></td><td><b>업데이트 확인</b></td><td>새 버전을 즉시 확인 — <b>[예/아니오]</b> 창이 뜹니다</td></tr>
+          <tr><td><span class="mk">8</span></td><td><b>종료</b></td><td>트레이 종료. 실행 중인 계좌가 있으면 비활성 — <b>06</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><span class="ic">💡</span><div>계좌를 아직 하나도 등록하지 않았다면 ①②③⑤⑥ 의 하위 목록에는 <b>“등록된 아바타 없음”</b> 만 보입니다 — 고장이 아니라 정상입니다. ④ 로 계좌를 추가하면 목록에 나타납니다.</div></div>
+    <div class="note"><span class="ic">🔄</span><div><b>업데이트는 자동입니다.</b> 트레이는 매일 <b>프리장 시작 때</b> 새 버전을 확인하고, 있으면 <b>묻지 않고 바로</b> 실행 중인 계좌를 정산·종료하고 업데이트한 뒤 <b>자동으로 다시 시작</b>합니다. 지금 바로 확인하려면 ⑦ <b>업데이트 확인</b>을 누르세요 — 직접 누른 경우엔 [예/아니오] 창이 뜹니다.</div></div>
   </section>
 
   <!-- 04 · 아바타 추가 -->
@@ -553,28 +629,85 @@
     <div class="sec-head">
       <span class="sec-kicker"><span class="n">04</span> 아바타 추가 · 설정 마법사</span>
       <h2>준비한 값을 넣어 계좌를 등록</h2>
-      <p>트레이 <b>우클릭 → “아바타 추가…”</b> 를 누르면 내 컴퓨터 안에서만 열리는 설정 페이지가 뜹니다. 아래 값을 입력하세요 —
-        키·토큰은 붙여넣기 확인을 위해 <b>평문으로 표시</b>됩니다.</p>
+      <p>등록은 <b>브라우저로 열리는 설정 페이지</b>에서 합니다. 트레이 <b>우클릭 → “아바타 추가…”</b> 를 누르면
+        기본 브라우저에 새 탭이 열리고 <b>“새 아바타 추가”</b> 페이지가 뜹니다. 주소는 <code>http://127.0.0.1:&lt;임의 번호&gt;/</code> —
+        <b>내 컴퓨터 안에서만 열리는 임시 페이지</b>라 입력값이 인터넷으로 나가지 않습니다.</p>
     </div>
-    <div class="tablewrap">
+    <div class="note"><span class="ic">💡</span><div>메뉴의 <b>“아바타 추가…”</b> 가 <b>흐리게(비활성)</b> 보이면 설정 페이지가 <b>이미 열려 있다</b>는 뜻입니다. 열어 둔 탭을 찾아 쓰거나, 그 탭에서 <b>[취소]</b> 를 누르면 곧바로 다시 열 수 있습니다(탭만 닫았다면 최대 <b>31분</b> 뒤 자동 정리). 탭이 아예 안 열리면 기본 브라우저가 지정돼 있는지 확인하세요.</div></div>
+
+    <div class="subhead" style="margin-top:34px"><span class="tag">4-1</span> 화면 구성 — 어디에 무엇을 넣나</div>
+    <figure class="figure">
+      <div class="frame"><img src="assets/setup-wizard.png" alt="설정 마법사 입력 화면 — ①이름 ②앱키 ③시크릿키 ④봇 토큰 ⑤chat_id ⑥시트 URL ⑦서비스계정 JSON ⑧입력 확인 ⑨저장"></div>
+      <figcaption>네 묶음(<b>아바타 · 키움 · 텔레그램 · 구글 시트</b>)으로 나뉩니다. <code>· 필수</code> 가 붙은 칸은 모두 채워야 합니다.</figcaption>
+    </figure>
+    <div class="tablewrap" style="margin-top:16px">
       <table>
-        <thead><tr><th>구역</th><th>항목</th><th>입력값</th><th>출처</th></tr></thead>
+        <thead><tr><th>표시</th><th>칸</th><th>넣을 값</th><th>출처</th></tr></thead>
         <tbody>
-          <tr><td><span class="sec-badge">아바타</span></td><td><b>이름</b></td><td>트레이에 표시될 계좌 이름 (예: <code>국내주식</code>)</td><td>자유</td></tr>
-          <tr><td><span class="sec-badge">키움</span></td><td><b>앱키</b></td><td>키움 App Key</td><td>준비물 03</td></tr>
-          <tr><td><span class="sec-badge">키움</span></td><td><b>시크릿키</b></td><td>키움 Secret Key</td><td>준비물 03</td></tr>
-          <tr><td><span class="sec-badge">텔레그램</span></td><td><b>봇 토큰</b></td><td>텔레그램 봇 토큰</td><td>준비물 04</td></tr>
-          <tr><td><span class="sec-badge">텔레그램</span></td><td><b>chat_id</b></td><td>텔레그램 chat_id(숫자)</td><td>준비물 04</td></tr>
-          <tr><td><span class="sec-badge">구글 시트</span></td><td><b>시트 URL</b></td><td>내 시트 사본 주소</td><td>준비물 01</td></tr>
-          <tr><td><span class="sec-badge">구글 시트</span></td><td><b>서비스계정 JSON</b></td><td>다운로드한 JSON 파일 선택</td><td>준비물 02</td></tr>
+          <tr><td><span class="mk">1</span></td><td><b>이름</b> <span class="sec-badge">아바타</span></td><td>트레이에 표시될 계좌 이름 (예: <code>국내주식</code>) — 설정 폴더 이름도 이 값으로 만들어집니다</td><td>자유</td></tr>
+          <tr><td><span class="mk">2</span></td><td><b>앱키</b> <span class="sec-badge">키움</span></td><td>키움 App Key</td><td>준비물 03</td></tr>
+          <tr><td><span class="mk">3</span></td><td><b>시크릿키</b> <span class="sec-badge">키움</span></td><td>키움 Secret Key</td><td>준비물 03</td></tr>
+          <tr><td><span class="mk">4</span></td><td><b>봇 토큰</b> <span class="sec-badge">텔레그램</span></td><td><code>8123456789:AAH…</code> 형태 <b>전체</b></td><td>준비물 04</td></tr>
+          <tr><td><span class="mk">5</span></td><td><b>chat_id</b> <span class="sec-badge">텔레그램</span></td><td>숫자만 (예: <code>123456789</code>)</td><td>준비물 04</td></tr>
+          <tr><td><span class="mk">6</span></td><td><b>시트 URL</b> <span class="sec-badge">구글 시트</span></td><td>내 시트 사본 주소 <b>전체</b></td><td>준비물 01</td></tr>
+          <tr><td><span class="mk">7</span></td><td><b>서비스계정 JSON</b> <span class="sec-badge">구글 시트</span></td><td><b>[파일 선택]</b> 을 눌러 받아 둔 JSON 파일을 지정</td><td>준비물 02</td></tr>
+          <tr><td><span class="mk">8</span></td><td><b>[입력 확인]</b></td><td>입력값을 실제로 검사합니다 (저장은 되지 않습니다)</td><td>—</td></tr>
+          <tr><td><span class="mk">9</span></td><td><b>[저장]</b></td><td>검사가 끝났으면 계좌를 등록합니다</td><td>—</td></tr>
         </tbody>
       </table>
     </div>
-    <ol class="steps" style="margin-top:22px">
-      <li><b>입력 확인</b> 을 눌러 값 검사 — 오류가 있으면 어떤 항목인지 표시됩니다.</li>
-      <li>이상 없으면 <b>저장</b> — 설정 페이지가 자동으로 닫히고 트레이 “아바타” 목록에 추가됩니다.</li>
+    <div class="note"><span class="ic">💡</span><div>키·토큰은 붙여넣기를 눈으로 확인하라고 <b>가리지 않고 평문으로 보입니다</b>. 복사할 때 <b>앞뒤 공백이나 줄바꿈이 섞이지 않게</b> 하세요 — 가장 흔한 실패 원인입니다. ⑦ 의 JSON 은 설정 안으로 <b>내용이 복사되어</b> 저장되므로, 저장한 뒤에는 원본 파일을 옮기거나 지워도 됩니다.</div></div>
+
+    <div class="subhead" style="margin-top:34px"><span class="tag">4-2</span> [입력 확인] — 결과 읽는 법</div>
+    <p style="margin:0 0 14px; color:var(--ink-soft); font-size:16px"><b>[저장] 전에 반드시 [입력 확인]을 누르세요.</b> 형식만 보는 것이 아니라
+      <b>키움·텔레그램·구글 시트에 실제로 접속</b>해 봅니다(몇 초 걸립니다). 결과는 화면 아래 상자에 줄마다 나옵니다.</p>
+    <figure class="figure">
+      <div class="frame"><img src="assets/setup-check.png" alt="입력 확인 결과 화면 — 통과 3줄과 실패 3줄"></div>
+      <figcaption>일부러 가짜 값을 넣은 예 — 앞 세 줄은 <b>통과</b>, 뒤 세 줄이 <b>접속 실패</b>입니다.</figcaption>
+    </figure>
+    <p style="margin:16px 0 0; color:var(--ink-soft); font-size:16px">값이 모두 맞으면 <b>여섯 줄이 전부 “통과”</b> 로 나옵니다.</p>
+    <div class="codebox">통과 · 모든 필수 키 존재
+통과 · 임베드 서비스계정 — 이 이메일을 시트에 편집자로 공유: avatar-bot@….iam.gserviceaccount.com
+통과 · 로컬 설정 형식 검증 통과
+통과 · 시트 연결 성공: 아바타 V3.8의 사본
+통과 · 키움 토큰 발급 성공
+통과 · 텔레그램 봇 확인: @내봇이름 → chat 123456789</div>
+    <div class="note"><span class="ic">🔎</span><div>두 번째 줄의 <b>서비스계정 이메일</b>이 준비물 02에서 시트에 공유해 둔 그 주소인지, 네 번째 줄의 <b>시트 제목</b>이 내 사본 제목인지 눈으로 확인하세요. 엉뚱한 시트에 연결된 것을 여기서 잡을 수 있습니다.</div></div>
+    <div class="tablewrap" style="margin-top:16px">
+      <table>
+        <thead><tr><th>“실패” 메시지(앞부분)</th><th>원인 · 할 일</th></tr></thead>
+        <tbody>
+          <tr><td><code>TokenError: 토큰 발급 실패 … App Key와 Secret Key 검증에 실패했습니다</code></td><td>앱키·시크릿키가 틀렸거나 서로 바뀜. 공백 없이 다시 붙여넣기 (준비물 03)</td></tr>
+          <tr><td><code>HTTPError: 401 … /getMe</code></td><td>봇 토큰이 틀림 (준비물 04)</td></tr>
+          <tr><td><code>chat_id 도달 불가 …</code></td><td>chat_id 가 틀렸거나, 그 봇에게 <b>먼저 말을 건 적이 없음</b> (준비물 04)</td></tr>
+          <tr><td>시트 연결 실패 — 권한(403·PERMISSION_DENIED)</td><td>서비스계정 이메일을 시트에 <b>편집자</b>로 공유하지 않음 (준비물 02)</td></tr>
+          <tr><td>시트 연결 실패 — 없음(404·SpreadsheetNotFound)</td><td>시트 URL 이 틀림. <code>…/copy</code> 로 만든 <b>내 사본</b> 주소인지 확인 (준비물 01)</td></tr>
+          <tr><td><code>ValueError: Unable to load PEM file …</code></td><td>서비스계정 JSON 이 손상됐거나 다른 파일 — 준비물 02의 JSON 을 다시 지정</td></tr>
+          <tr><td><code>확인이 필요한 항목이 있습니다</code> + 항목 목록</td><td>비었거나 형식이 틀린 칸 — 목록에 적힌 칸만 고치면 됩니다</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><span class="ic">⚠️</span><div>키움은 <b>실행할 PC의 공인 IP가 등록돼 있어야</b> 합니다(준비물 03). 여기서는 통과했는데 실행 후 조회가 계속 거부되면 IP 등록부터 확인하세요.</div></div>
+
+    <div class="subhead" style="margin-top:34px"><span class="tag">4-3</span> 저장 — 그리고 등록 확인</div>
+    <ol class="steps two">
+      <li><b>[저장]</b> 을 누릅니다.</li>
+      <li>아래에 <b>“저장했습니다. 이 창을 닫아도 됩니다.”</b> 가 뜨면 끝입니다 — <b>브라우저 탭은 직접 닫으세요</b>(설정용 임시 서버는 이미 닫혔습니다).</li>
+      <li>트레이 <b>우클릭 → “아바타”</b> 에 마우스를 올려 <b>방금 넣은 이름이 목록에 보이면</b> 등록 성공입니다.</li>
+      <li>설정은 <code>%APPDATA%\Avatar\&lt;이름&gt;</code> 폴더(<code>config.yaml</code>)에, 계좌 목록은 <code>%APPDATA%\Avatar\avatars.json</code> 에 저장됩니다 — <b>업데이트해도 보존</b>됩니다.</li>
     </ol>
-    <div class="note"><span class="ic">💡</span><div>여러 계좌를 운용하려면 <b>“아바타 추가…”</b> 를 반복해 계좌별로 등록하면 됩니다.</div></div>
+    <div class="note"><span class="ic">💡</span><div>저장하지 않고 그만두려면 <b>[취소]</b> — 아무것도 저장되지 않고 설정 페이지가 닫힙니다. 여러 계좌를 운용하려면 <b>“아바타 추가…”</b> 를 계좌 수만큼 반복하면 됩니다.</div></div>
+
+    <div class="subhead" style="margin-top:34px"><span class="tag">4-4</span> 값을 잘못 넣었거나 나중에 바꾸고 싶다면</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>바꿀 것</th><th>방법</th></tr></thead>
+        <tbody>
+          <tr><td><b>이름만</b></td><td>계좌를 중지한 뒤 트레이 <b>우클릭 → “이름 변경”</b> — 설정·기록·자동 시작 여부는 그대로 유지됩니다</td></tr>
+          <tr><td><b>키·시트 주소 등</b></td><td>마법사는 <b>새로 추가하는 용도 전용</b>입니다. ① 계좌를 중지하고 <code>%APPDATA%\Avatar\&lt;이름&gt;\config.yaml</code> 을 메모장으로 열어 <code>APP_KEY</code>·<code>SECRET_KEY</code>·<code>TELEGRAM_TOKEN</code>·<code>TELEGRAM_CHATID</code>·<code>SPREADSHEET_URL</code> 을 고쳐 저장(기록 보존 — 권장) 또는 ② 중지 → <b>“아바타 삭제…”</b> 후 다시 추가(그 계좌 기록도 함께 삭제)</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <!-- 05 · 실행 -->
@@ -746,7 +879,11 @@
         <tbody>
           <tr><td><b>트레이 아이콘이 안 보임</b></td><td>트레이의 <code>^</code>(숨겨진 아이콘 표시)를 눌러 확인</td></tr>
           <tr><td><b>실행 시 “PC 보호” 경고</b></td><td>SmartScreen → <b>추가 정보 → 실행</b></td></tr>
+          <tr><td><b>검은 창만 떴다 닫히고 아이콘이 없음</b></td><td><code>%LOCALAPPDATA%\Avatar\bootstrap.log</code> 마지막 줄 확인(백신 차단이 흔함) 후 다시 실행</td></tr>
+          <tr><td><b>“Avatar 가 이미 실행 중입니다” 창</b></td><td>중복 실행이 막힌 것 — 트레이(<code>^</code> 안 포함)를 확인</td></tr>
           <tr><td><b>“아바타 추가…” 가 비활성</b></td><td>이전 설정 마법사가 아직 열려 있음. 브라우저 탭을 닫고 잠시 뒤 재시도(일정 시간 후 자동 정리)</td></tr>
+          <tr><td><b>설정 페이지 탭이 안 열림</b></td><td>기본 브라우저가 지정돼 있는지 확인 — 메뉴를 거듭 누르지 말고 03의 비활성 안내를 먼저 확인</td></tr>
+          <tr><td><b>저장했는데 “아바타” 목록에 없음</b></td><td>메뉴를 닫았다 다시 열어 보고, <code>%APPDATA%\Avatar\avatars.json</code> 에 이름이 있는지 확인</td></tr>
           <tr><td><b>시트 접근/권한 오류</b></td><td><b>서비스계정 이메일을 시트에 편집자로 공유</b>했는지 확인 (준비물 02)</td></tr>
           <tr><td><b>키움 API 호출 거부</b></td><td><b>실행 PC 공인 IP를 키움에 등록</b>했는지, IP가 바뀌지 않았는지 확인 (준비물 03)</td></tr>
           <tr><td><b>텔레그램 알림이 안 옴</b></td><td><b>chat_id</b> 가 정확한지, 봇에게 먼저 메시지를 보냈는지 확인</td></tr>
